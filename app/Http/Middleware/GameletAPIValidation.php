@@ -30,9 +30,10 @@ class GameletAPIValidation
 
         if($request->cache == 1){
             if(!$GLOBALS["GameletAPIHelper"]->isUserInCache($id, $method)){
-                return response()->json([
-                    "error" => "User {$id} not found in cache. Try the live version?"
-                ], 404);
+                // return response()->json([
+                //     "error" => "User {$id} was not found in cache."
+                // ], 404);
+                $validCache = false;
             } else {
                 $validCache = true;
             }
