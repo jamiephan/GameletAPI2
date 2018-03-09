@@ -17,7 +17,7 @@ class GameletAPIController extends Controller
         return response()->json(
             ["id" => $id,
             "message" => "Please specify the method.",
-            "acceptableMethods" => $this->allowMethods,
+            "acceptableMethods" => $GLOBALS["GameletAPIHelper"]->allowMethods,
             ], 200);
     }
     /**
@@ -29,16 +29,6 @@ class GameletAPIController extends Controller
      */
     public function methodHandler($id, $method){
 
-
-
-        if(!in_array($method, $GLOBALS["GameletAPIHelper"]->allowMethods)){
-            return response()->json(
-                [
-                    "error"=> "Invalid method.",
-                    "acceptableMethods" => $GLOBALS["GameletAPIHelper"]->allowMethods,
-                ]
-            , 406);
-        }
         $cache = \Request::get("cacheHTML");
         $isCache = \Request::get("validCache");
 
